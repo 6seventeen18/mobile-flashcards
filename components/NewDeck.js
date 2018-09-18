@@ -40,7 +40,8 @@ const style = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         paddingTop: 20,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: '#ed1044' /* red */
     },
     textInput: {
         width: 300,

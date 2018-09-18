@@ -10,6 +10,7 @@ export default class DeckHome extends React.Component {
         </View>
       </View>
     )
+  }
 }
 
 const styles = StyleSheet.create({

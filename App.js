@@ -6,9 +6,10 @@ import { Provider } from 'react-redux';
 import { Constants } from 'expo'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import reducer from './reducers'
-import { red, white, purple, black } from './utils/colors'
+import { red, white, purple, black, green } from './utils/colors'
 import Home from './components/Home'
 import NewDeck from './components/NewDeck'
+import DeckHome from './components/DeckHome'
 
 function StyledStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -57,21 +58,31 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
+      header: null,
+      // headerStyle: {
+      //   backgroundColor: red
+      // },
       backgroundColor: purple,
-      headerStyle: {
-        backgroundColor: red
-      }
     }
   },
   NewDeck: {
     screen: NewDeck,
     navigationOptions: {
+      headerStyle: {
+        backgroundColor: green,
+      },
       headerTintColor: black,
+    }
+  },
+  DeckHome: {
+    screen: DeckHome,
+    navigationOptions: {
       headerStyle: {
         backgroundColor: purple,
-      }
-    }
-  }
+      },
+      headerTintColor: black,
+    },
+  },
 })
 
 export default class App extends React.Component {
