@@ -37,29 +37,30 @@ class NewDeck extends Component {
 
 const style = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: 20,
-        justifyContent: 'center',
-        backgroundColor: '#ed1044' /* red */
+      flex: 1,
+      alignItems: 'center',
+      paddingTop: 20,
+      justifyContent: 'flex-start',
+      backgroundColor: '#ed1044' /* red */
     },
     textInput: {
-        width: 300,
-        padding: 10,
-        borderWidth: 1,
-        borderColor: '#000',
-        backgroundColor: '#fff',
-        margin: 10,
+      width: 300,
+      padding: 10,
+      borderWidth: 1,
+      borderColor: '#000',
+      backgroundColor: '#fff',
+      margin: 10,
     },
     touchableOpacity: {
-        backgroundColor: 'blue',
-        padding: 10,
-        height: 44,
+      backgroundColor: 'blue',
+      padding: 10,
+      height: 44,
+      borderRadius: 5
     },
     submitText: {
-        color: '#fff',
-        fontSize: 20,
-        textAlign: 'center',
+      color: '#fff',
+      fontSize: 20,
+      textAlign: 'center',
     },
 })
 

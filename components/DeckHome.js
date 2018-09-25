@@ -9,36 +9,71 @@ class DeckHome extends React.Component {
     const questions = this.props.decks[title] && this.props.decks[title].questions
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-        <DeckCard title={title} questions={questions} />
+      <View style={{ display: 'flex', flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+        <View>
+          <TouchableOpacity onPress={() =>
+            this.props.navigation.navigate('DeckHome', item)}>
+            <DeckCard title={title} questions={questions} />
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
+        <View>
+          <TouchableOpacity
             onPress={() => {
-                this.props.navigation.navigate('NewQuestion', {
-                    title,
-                    questions,
-                });
+              this.props.navigation.navigate('Add New Question', {
+                title,
+                questions,
+              })
             }}
-            style={styles.addCard}>
-            <Text style={styles.addCardTitle}>Add Card</Text>
-        </TouchableOpacity>
+            style={styles.button}>
+            <Text style={styles.submitText}>Add New Question</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
+          <TouchableOpacity
             onPress={() => {
-                this.props.navigation.navigate('Quiz', {
-                    title,
-                    questions,
-                });
+              this.props.navigation.navigate('Quiz', {
+                title,
+                questions,
+              })
             }}
-            style={styles.startQuiz}>
-            <Text style={styles.startQuizTitle}>Start Quiz</Text>
-        </TouchableOpacity>
+            style={styles.button}>
+            <Text style={styles.submitText}>Start Quiz</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({ })
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      paddingTop: 20,
+      justifyContent: 'center',
+      backgroundColor: '#ed1044'
+    },
+    textInput: {
+      width: 300,
+      padding: 10,
+      borderWidth: 1,
+      borderColor: '#000',
+      backgroundColor: '#fff',
+      margin: 10,
+    },
+    button: {
+      backgroundColor: 'blue',
+      padding: 10,
+      height: 44,
+      borderRadius: 5,
+      margin: 10
+    },
+    submitText: {
+      color: '#fff',
+      fontSize: 20,
+      textAlign: 'center',
+    },
+})
 
 function mapStateToProps(state) {
   return {
