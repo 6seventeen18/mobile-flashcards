@@ -1,25 +1,49 @@
-import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React from 'react'
+import { connect } from 'react-redux'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import DeckCard from './DeckCard'
 
-export default class DeckHome extends React.Component {
+class DeckHome extends React.Component {
   render() {
+    const { title } = this.props.navigation.state.params
+    const questions = this.props.decks[title] && this.props.decks[title].questions
+
     return (
-      <View style={styles.deck}>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text>DeckHome</Text>
-        </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+        <DeckCard title={title} questions={questions} />
+
+        <TouchableOpacity
+            onPress={() => {
+                this.props.navigation.navigate('NewQuestion', {
+                    title,
+                    questions,
+                });
+            }}
+            style={styles.addCard}>
+            <Text style={styles.addCardTitle}>Add Card</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+            onPress={() => {
+                this.props.navigation.navigate('Quiz', {
+                    title,
+                    questions,
+                });
+            }}
+            style={styles.startQuiz}>
+            <Text style={styles.startQuizTitle}>Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-    deck: {
-        flexDirection: 'row',
-        marginTop: 12,
-        height: 120,
-        backgroundColor: '#fff',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-})
+const styles = StyleSheet.create({ })
+
+function mapStateToProps(state) {
+  return {
+    decks: state,
+  }
+}
+
+export default connect(mapStateToProps)(DeckHome)

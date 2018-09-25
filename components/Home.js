@@ -8,11 +8,11 @@ import DeckCard from './DeckCard'
 
 class Home extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch } = this.props
 
     getDecksFromStorage()
       .then(decks => dispatch(receiveDecks(decks)))
-      .then(() => this.setState(() => ({ready: true})));
+      .then(() => this.setState(() => ({ready: true})))
   }
 
   renderDeck = ({item}) => (
