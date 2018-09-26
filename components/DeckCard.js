@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 
 export default class DeckCard extends React.Component {
   render() {
-    console.log("DeckCard props", this.props)
+    // console.log("DeckCard props", this.props)
     // const { deck } = this.props
     const { title, questions } = this.props
 

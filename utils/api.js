@@ -27,6 +27,10 @@ let data = {
   }
 }
 
+export function createDeck(deck) {
+  return AsyncStorage.mergeItem(DECKS_KEY, JSON.stringify(deck))
+}
+
 export function getDecksFromStorage() {
   return AsyncStorage.getItem(DECKS_KEY)
     .then(results => {

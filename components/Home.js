@@ -1,19 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, Animated, FlatList } from 'react-native'
+import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, Animated, FlatList, Button } from 'react-native'
 import { purple, white, red } from '../utils/colors'
 import { getDecksFromStorage } from '../utils/api'
 import { receiveDecks } from '../actions'
 import DeckCard from './DeckCard'
 
+import { AsyncStorage } from 'react-native'
+
 class Home extends Component {
   componentDidMount() {
+  // loadDecks() {
+    console.log('Home componentDidMount')
     const { dispatch } = this.props
 
     getDecksFromStorage()
       .then(decks => dispatch(receiveDecks(decks)))
       .then(() => this.setState(() => ({ready: true})))
   }
+
+  // componentDidUpdate() {
+  //   const { dispatch } = this.props
+  //
+  //   getDecksFromStorage()
+  //     .then(decks => dispatch(receiveDecks(decks)))
+  //     .then(() => this.setState(() => ({ready: true})))
+  // }
 
   renderDeck = ({item}) => (
     <View>
@@ -31,10 +43,19 @@ class Home extends Component {
           data={Object.values(this.props.decks).sort((a, b) => a.title > b.title)}
           renderItem={this.renderDeck}
           keyExtractor={(item, index) => index.toString()}/>
+
+        <Button title="clearAsyncStorage" onPress={this.clearAsyncStorage}>
+          <Text>Clear Async Storage</Text>
+        </Button>
       </View>
     )
   }
+
+  clearAsyncStorage = async() => {
+    AsyncStorage.clear()
+  }
 }
+
 
 function mapStateToProps(state) {
   return {
