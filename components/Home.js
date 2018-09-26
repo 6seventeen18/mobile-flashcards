@@ -10,22 +10,12 @@ import { AsyncStorage } from 'react-native'
 
 class Home extends Component {
   componentDidMount() {
-  // loadDecks() {
-    console.log('Home componentDidMount')
     const { dispatch } = this.props
 
     getDecksFromStorage()
       .then(decks => dispatch(receiveDecks(decks)))
       .then(() => this.setState(() => ({ready: true})))
   }
-
-  // componentDidUpdate() {
-  //   const { dispatch } = this.props
-  //
-  //   getDecksFromStorage()
-  //     .then(decks => dispatch(receiveDecks(decks)))
-  //     .then(() => this.setState(() => ({ready: true})))
-  // }
 
   renderDeck = ({item}) => (
     <View>
@@ -38,7 +28,8 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, paddingTop: 20, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{fontSize: 28}}>Choose A Deck!</Text>
         <FlatList
           data={Object.values(this.props.decks).sort((a, b) => a.title > b.title)}
           renderItem={this.renderDeck}

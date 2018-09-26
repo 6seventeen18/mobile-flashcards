@@ -22,6 +22,8 @@ class NewDeck extends Component {
     const deckKey = title.split(" ").join()
     const newDeck = {[deckKey]: {title: title, questions: []}}
 
+    // handle deck already exists
+
     createDeck(newDeck)
       .then(dispatch(addDeck(newDeck)))
       .then(decks => dispatch(receiveDecks(decks)))
@@ -36,7 +38,7 @@ class NewDeck extends Component {
   render() {
     return (
       <View style={style.container}>
-        <Text style={{fontSize: 20}}>Enter the title of your new deck:</Text>
+        <Text style={{fontSize: 24}}>Enter the title of your new deck:</Text>
 
         <TextInput
           value={this.state.title}
