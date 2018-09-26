@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Keyboard } from 'react-native'
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard
+} from 'react-native'
 import { connect } from 'react-redux'
-import { addDeck } from '../actions/'
+import { addDeck, receiveDecks } from '../actions/'
 import { createDeck } from '../utils/api'
-
-import { receiveDecks } from '../actions'
 
 class NewDeck extends Component {
   state = {
@@ -13,21 +18,15 @@ class NewDeck extends Component {
 
   addDeck = () => {
     const { title } = this.state
+    const { dispatch, navigation } = this.props
     const deckKey = title.split(" ").join()
     const newDeck = {[deckKey]: {title: title, questions: []}}
 
-    // this.props.dispatch(addDeck(newDeck))
-    //   .then(
-    //     this.props.navigation.navigate(
-    //       'Home', {}, Keyboard.dismiss()
-    //     )
-    //   )
-
     createDeck(newDeck)
-      .then(this.props.dispatch(addDeck(newDeck)))
-      .then(decks => this.props.dispatch(receiveDecks(decks)))
+      .then(dispatch(addDeck(newDeck)))
+      .then(decks => dispatch(receiveDecks(decks)))
       .then(
-        this.props.navigation.navigate(
+        navigation.navigate(
           'Home', {}, Keyboard.dismiss()
         )
     )
@@ -50,7 +49,7 @@ class NewDeck extends Component {
             <Text style={style.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
@@ -89,4 +88,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(NewDeck);
+export default connect(mapStateToProps)(NewDeck)
