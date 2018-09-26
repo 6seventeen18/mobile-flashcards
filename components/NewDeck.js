@@ -22,14 +22,14 @@ class NewDeck extends Component {
     const deckKey = title.split(" ").join()
     const newDeck = {[deckKey]: {title: title, questions: []}}
 
-    // handle deck already exists
+    // TODO: handle deck already exists
 
     createDeck(newDeck)
       .then(dispatch(addDeck(newDeck)))
       .then(decks => dispatch(receiveDecks(decks)))
       .then(
         navigation.navigate(
-          'Home', {}, Keyboard.dismiss()
+          'DeckHome', { title: title, questions: []}, Keyboard.dismiss()
         )
     )
     this.setState({ title: '' })
