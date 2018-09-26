@@ -61,7 +61,7 @@ const style = StyleSheet.create({
       alignItems: 'center',
       paddingTop: 20,
       justifyContent: 'flex-start',
-      backgroundColor: '#ed1044' /* red */
+      // backgroundColor: '#ed1044' /* red */
     },
     textInput: {
       width: 300,

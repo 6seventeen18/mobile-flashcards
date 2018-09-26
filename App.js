@@ -41,7 +41,7 @@ const Tabs = createBottomTabNavigator({
   tabBarOptions: {
     activeTintColor: green,
     style: {
-      height: 56,
+      height: 46,
       backgroundColor: green,
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
@@ -58,19 +58,42 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      title: 'Deck List'
+      title: 'Deck List',
+      header: null
+      // headerStyle: {
+      //   height: 30,
+      // },
+      // headerTitleStyle: {
+      //   fontSize: 28,
+      // },
+      // headerTintColor: '#000',
     }
   },
   NewDeck: {
     screen: NewDeck,
     navigationOptions: {
-      title: 'New Deck'
+      header: null,
+      title: 'New Deck',
+      // headerStyle: {
+      //   height: 30,
+      // },
+      // headerTitleStyle: {
+      //   fontSize: 28,
+      // },
+      // headerTintColor: '#000',
     }
   },
   DeckHome: {
     screen: DeckHome,
     navigationOptions: {
-      title: 'Deck Home',
+      title: 'Deck List',
+      // headerStyle: {
+      //   height: 30,
+      // },
+      // headerTitleStyle: {
+      //   fontSize: 28,
+      // },
+      // headerTintColor: '#000',
     },
   },
 })
