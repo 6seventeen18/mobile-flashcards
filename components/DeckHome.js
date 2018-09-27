@@ -20,7 +20,7 @@ class DeckHome extends React.Component {
         <View>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Add New Question', {
+              this.props.navigation.navigate('NewQuestion', {
                 title,
                 questions,
               })

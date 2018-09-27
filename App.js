@@ -10,6 +10,7 @@ import { red, white, purple, black, green, gray } from './utils/colors'
 import Home from './components/Home'
 import NewDeck from './components/NewDeck'
 import DeckHome from './components/DeckHome'
+import NewQuestion from './components/NewQuestion'
 
 function StyledStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -60,13 +61,6 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Deck List',
       header: null
-      // headerStyle: {
-      //   height: 30,
-      // },
-      // headerTitleStyle: {
-      //   fontSize: 28,
-      // },
-      // headerTintColor: '#000',
     }
   },
   NewDeck: {
@@ -86,14 +80,22 @@ const MainNavigator = createStackNavigator({
   DeckHome: {
     screen: DeckHome,
     navigationOptions: {
-      title: 'Deck List',
-      // headerStyle: {
-      //   height: 30,
-      // },
+      title: 'Deck Home',
+      headerStyle: {
+        height: 30,
+      },
       // headerTitleStyle: {
       //   fontSize: 28,
       // },
       // headerTintColor: '#000',
+    },
+  },
+  NewQuestion: {
+    screen: NewQuestion,
+    navigationOptions: {
+      headerStyle: {
+        height: 30,
+      },
     },
   },
 })

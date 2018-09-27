@@ -24,6 +24,8 @@ class NewDeck extends Component {
 
     // TODO: handle deck already exists
 
+    // TODO disable submit until form is complete
+
     createDeck(newDeck)
       .then(dispatch(addDeck(newDeck)))
       .then(decks => dispatch(receiveDecks(decks)))
