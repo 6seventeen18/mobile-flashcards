@@ -11,6 +11,7 @@ import Home from './components/Home'
 import NewDeck from './components/NewDeck'
 import DeckHome from './components/DeckHome'
 import NewQuestion from './components/NewQuestion'
+import Quiz from './components/Quiz'
 
 function StyledStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -84,15 +85,20 @@ const MainNavigator = createStackNavigator({
       headerStyle: {
         height: 30,
       },
-      // headerTitleStyle: {
-      //   fontSize: 28,
-      // },
-      // headerTintColor: '#000',
     },
   },
   NewQuestion: {
     screen: NewQuestion,
     navigationOptions: {
+      headerStyle: {
+        height: 30,
+      },
+    },
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz',
       headerStyle: {
         height: 30,
       },
@@ -107,7 +113,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           <StyledStatusBar
-            backgroundColor="purple"
+            backgroundColor="red"
             barStyle="light-content"
           />
           <MainNavigator />
