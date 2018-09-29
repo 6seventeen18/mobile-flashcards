@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationActions } from 'react-navigation'
+import { styles } from '../utils/styles'
 
 export default class Quiz extends React.Component {
   state = {
@@ -44,33 +45,3 @@ export default class Quiz extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-    borderWidth: 3,
-    borderColor: '#666666'
-  },
-  cardsContainer: {
-    borderWidth: 5,
-    borderColor: '#efefef',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  card: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 14,
-    borderRadius: 5,
-    borderColor: '#000',
-    borderWidth: 1,
-  }
-})

@@ -5,6 +5,7 @@ import { purple, white, red } from '../utils/colors'
 import { getDecksFromStorage } from '../utils/api'
 import { receiveDecks } from '../actions'
 import DeckCard from './DeckCard'
+import { styles } from '../utils/styles'
 
 import { AsyncStorage } from 'react-native'
 
@@ -28,12 +29,14 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, paddingTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{fontSize: 28}}>Choose A Deck!</Text>
-        <FlatList
-          data={Object.values(this.props.decks).sort((a, b) => a.title > b.title)}
-          renderItem={this.renderDeck}
-          keyExtractor={(item, index) => index.toString()}/>
+      <View style={styles.container}>
+        <Text style={{borderWidth: 2, alignItems: 'center', fontSize: 28}}>Choose A Deck!</Text>
+        <View style={styles.cardsContainer}>
+          <FlatList
+            data={Object.values(this.props.decks).sort((a, b) => a.title > b.title)}
+            renderItem={this.renderDeck}
+            keyExtractor={(item, index) => index.toString()}/>
+        </View>
 
         <Button title="clearAsyncStorage" onPress={this.clearAsyncStorage}>
           <Text>Clear Async Storage</Text>
