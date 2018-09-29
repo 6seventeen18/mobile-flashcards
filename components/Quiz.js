@@ -10,13 +10,11 @@ export default class Quiz extends React.Component {
   }
 
   render () {
-    console.log("Quiz this.props.navigation.state.params.questions", this.props.navigation.state.params.questions)
-    console.log("---------------------------")
     const { showQuestion, questionIndex, correctAnswers } = this.state
     const { questions } = this.props.navigation.state.params
-    console.log("Quiz questions ", questions)
+
     return (
-      <View>
+      <View style={styles.container}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontSize: 18, color: '#666666'}}>
             Current Question: {questionIndex + 1}/{questions.length}
@@ -30,15 +28,13 @@ export default class Quiz extends React.Component {
         {
           showQuestion
             ? (
-              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <View style={styles.cardsContainer}>
                 <View style={styles.card}>
-                  <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style={{fontSize: 24}}>{questions[questionIndex].question}</Text>
-                  </View>
+                  <Text style={{fontSize: 24}}>{questions[questionIndex].question}</Text>
                 </View>
               </View>)
             : (
-              <View style={styles.card}>
+              <View style={styles.cardContainer}>
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>
                   <Text style={{fontSize: 24}}>{questions[questionIndex].answer}</Text>
                 </View>
@@ -52,19 +48,29 @@ export default class Quiz extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
+    justifyContent: 'center',
+    padding: 20,
+    borderWidth: 3,
+    borderColor: '#666666'
   },
-  card: {
+  cardsContainer: {
+    borderWidth: 5,
+    borderColor: '#efefef',
+    flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    margin: 5,
-    padding: 14,
-    borderRadius: 5,
-    height: 65,
-    borderColor: '#000',
-    width: 320,
-    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  card: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 14,
+    borderRadius: 5,
+    borderColor: '#000',
+    borderWidth: 1,
   }
 })
