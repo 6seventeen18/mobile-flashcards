@@ -30,7 +30,13 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{borderWidth: 2, alignItems: 'center', fontSize: 28}}>Choose A Deck!</Text>
+        <Text style={
+          {
+            borderWidth: 0,
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            fontSize: 28
+          }}>Choose A Deck!</Text>
         <View style={styles.cardsContainer}>
           <FlatList
             data={Object.values(this.props.decks).sort((a, b) => a.title > b.title)}
@@ -49,7 +55,6 @@ class Home extends Component {
     AsyncStorage.clear()
   }
 }
-
 
 function mapStateToProps(state) {
   return {

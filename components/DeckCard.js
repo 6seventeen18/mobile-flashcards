@@ -16,19 +16,3 @@ export default class DeckCard extends React.Component {
     )
   }
 }
-
-const styles1 = StyleSheet.create({
-  deck: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    margin: 5,
-    padding: 14,
-    borderRadius: 5,
-    height: 65,
-    borderColor: '#000',
-    width: 320,
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})

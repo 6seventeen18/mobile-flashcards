@@ -16,12 +16,12 @@ export default class Quiz extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{fontSize: 18, color: '#666666'}}>
-            Current Question: {questionIndex + 1}/{questions.length}
+        <View style={styles.cardsContainer}>
+          <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666'}}>
+            Question {questionIndex + 1} of {questions.length}
           </Text>
 
-          <Text style={{fontSize: 18, color: '#666666'}}>
+          <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666', textAlign: 'right'}}>
             Score: {correctAnswers}/{questions.length}
           </Text>
         </View>

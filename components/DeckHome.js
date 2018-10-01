@@ -12,12 +12,7 @@ class DeckHome extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.cardsContainer}>
-          <View>
-            <TouchableOpacity onPress={() =>
-              this.props.navigation.navigate('DeckHome', item)}>
-              <DeckCard title={title} questions={questions} />
-            </TouchableOpacity>
-          </View>
+          <DeckCard title={title} questions={questions} />
         </View>
 
         <View>
@@ -47,36 +42,6 @@ class DeckHome extends React.Component {
     )
   }
 }
-
-// const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       alignItems: 'center',
-//       paddingTop: 20,
-//       justifyContent: 'center',
-//       backgroundColor: '#ed1044'
-//     },
-//     textInput: {
-//       width: 300,
-//       padding: 10,
-//       borderWidth: 1,
-//       borderColor: '#000',
-//       backgroundColor: '#fff',
-//       margin: 10,
-//     },
-//     button: {
-//       backgroundColor: 'blue',
-//       padding: 10,
-//       height: 44,
-//       borderRadius: 5,
-//       margin: 10
-//     },
-//     submitText: {
-//       color: '#fff',
-//       fontSize: 20,
-//       textAlign: 'center',
-//     },
-// })
 
 function mapStateToProps(state) {
   return {
