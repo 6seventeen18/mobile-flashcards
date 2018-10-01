@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationActions } from 'react-navigation'
 import { styles } from '../utils/styles'
+import { Ionicons } from '@expo/vector-icons'
+import { lightGreen, lightRed } from '../utils/colors'
 
 export default class Quiz extends React.Component {
   state = {
@@ -10,15 +12,88 @@ export default class Quiz extends React.Component {
     correctAnswers: 0,
   }
 
+  showAnswer = () => {
+  	this.setState({
+      showQuestion: false
+    })
+  }
+
+  answeredCorrectly = (correct) => {
+    let answerTotal = this.state.correctAnswers
+    if (correct) {
+      answerTotal += 1
+    }
+
+    this.setState({
+      questionIndex: this.state.questionIndex + 1,
+      correctAnswers: answerTotal,
+      showQuestion: true,
+    })
+  }
+
+  showCard = () => {
+    const { showQuestion } = this.state
+
+    if (showQuestion) {
+      return this.questionCard()
+    } else {
+      return this.answerCard()
+    }
+  }
+
+  questionCard = () => {
+    const { questionIndex } = this.state
+    const { questions } = this.props.navigation.state.params
+
+    return (
+      <View style={styles.cardsContainer}>
+        <View style={styles.card}>
+          <Text style={{fontSize: 24}}>{questions[questionIndex].question}</Text>
+
+          <TouchableOpacity onPress={() => this.showAnswer()}>
+            <Text style={{fontSize: 16, color: '#666666', marginTop: 30}}>show answer</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+
+  answerCard = () => {
+    const { questionIndex } = this.state
+    const { questions } = this.props.navigation.state.params
+
+    return (
+      <View style={styles.cardContainer}>
+        <View style={styles.card}>
+          <Text style={{fontSize: 24}}>{questions[questionIndex].answer}</Text>
+
+          <View style={{borderWidth: 2, width: '100%', marginTop: 50, flexDirection: 'row', justifyContent: 'space-around'}}>
+            <TouchableOpacity onPress={() => this.answeredCorrectly(false)} >
+              <Ionicons name='ios-thumbs-down' size={50} color={lightRed} />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.answeredCorrectly(true)}  >
+              <Ionicons name='ios-thumbs-up' size={50} color={lightGreen} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    )
+  }
+
   render () {
     const { showQuestion, questionIndex, correctAnswers } = this.state
     const { questions } = this.props.navigation.state.params
+    const quizComplete = questionIndex === questions.length
+    const questionNumber = questionIndex + 1 > questions.length
+      ? questionIndex
+      : questionIndex + 1
 
     return (
       <View style={styles.container}>
         <View style={styles.cardsContainer}>
           <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666'}}>
-            Question {questionIndex + 1} of {questions.length}
+            Question {questionNumber} of {questions.length}
           </Text>
 
           <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666', textAlign: 'right'}}>
@@ -26,20 +101,9 @@ export default class Quiz extends React.Component {
           </Text>
         </View>
 
-        {
-          showQuestion
-            ? (
-              <View style={styles.cardsContainer}>
-                <View style={styles.card}>
-                  <Text style={{fontSize: 24}}>{questions[questionIndex].question}</Text>
-                </View>
-              </View>)
-            : (
-              <View style={styles.cardContainer}>
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                  <Text style={{fontSize: 24}}>{questions[questionIndex].answer}</Text>
-                </View>
-              </View>)
+        { quizComplete
+          ? <Text style={{fontSize: 30}}>Your quiz is complete!</Text>
+          : this.showCard()
         }
       </View>
     )
