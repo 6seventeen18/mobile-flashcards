@@ -31,6 +31,26 @@ export default class Quiz extends React.Component {
     })
   }
 
+  showHeader = () => {
+    const { questionIndex, correctAnswers } = this.state
+    const { questions } = this.props.navigation.state.params
+    const questionNumber = questionIndex + 1 > questions.length
+      ? questionIndex
+      : questionIndex + 1
+
+    return (
+      <View style={styles.cardsContainer}>
+        <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666'}}>
+          Question { questionNumber } of { questions.length }
+        </Text>
+
+        <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666', textAlign: 'right'}}>
+          Score: { correctAnswers }/{ questions.length }
+        </Text>
+      </View>
+    )
+  }
+
   showCard = () => {
     const { showQuestion } = this.state
 
@@ -63,43 +83,44 @@ export default class Quiz extends React.Component {
     const { questions } = this.props.navigation.state.params
 
     return (
-      <View style={styles.cardContainer}>
-        <View style={styles.card}>
-          <Text style={{fontSize: 24}}>{questions[questionIndex].answer}</Text>
+        /** These are the cardsContainer styles, but they do not load correctly
+            for this View when referencing the imported styles */
+        <View style={{
+          flex: 0,
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          alignSelf: 'flex-start',
+          flexDirection: 'row',
+          alignContent: 'flex-start',
+          alignSelf: 'flex-start',
+          marginBottom: 5,
+          marginTop: 15
+        }}>
+          <View style={styles.card}>
+            <Text style={{fontSize: 24}}>{questions[questionIndex].answer}</Text>
 
-          <View style={{borderWidth: 2, width: '100%', marginTop: 50, flexDirection: 'row', justifyContent: 'space-around'}}>
-            <TouchableOpacity onPress={() => this.answeredCorrectly(false)} >
-              <Ionicons name='ios-thumbs-down' size={50} color={lightRed} />
-            </TouchableOpacity>
+            <View style={{borderWidth: 0, width: '100%', marginTop: 50, flexDirection: 'row', justifyContent: 'space-around'}}>
+              <TouchableOpacity onPress={() => this.answeredCorrectly(false)} >
+                <Ionicons name='ios-thumbs-down' size={50} color={lightRed} />
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.answeredCorrectly(true)}  >
-              <Ionicons name='ios-thumbs-up' size={50} color={lightGreen} />
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.answeredCorrectly(true)}  >
+                <Ionicons name='ios-thumbs-up' size={50} color={lightGreen} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
     )
   }
 
   render () {
-    const { showQuestion, questionIndex, correctAnswers } = this.state
+    const { questionIndex } = this.state
     const { questions } = this.props.navigation.state.params
     const quizComplete = questionIndex === questions.length
-    const questionNumber = questionIndex + 1 > questions.length
-      ? questionIndex
-      : questionIndex + 1
 
     return (
       <View style={styles.container}>
-        <View style={styles.cardsContainer}>
-          <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666'}}>
-            Question {questionNumber} of {questions.length}
-          </Text>
-
-          <Text style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, borderWidth: 0, padding: 5, margin: 5, fontSize: 18, color: '#666666', textAlign: 'right'}}>
-            Score: {correctAnswers}/{questions.length}
-          </Text>
-        </View>
+        { this.showHeader() }
 
         { quizComplete
           ? <Text style={{fontSize: 30}}>Your quiz is complete!</Text>

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     alignContent: 'flex-start',
     alignSelf: 'flex-start',
     marginBottom: 5,
-    marginTop: 15
+    marginTop: 15,
   },
   card: {
     flex: 1,
