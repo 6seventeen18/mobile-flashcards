@@ -12,6 +12,14 @@ export default class Quiz extends React.Component {
     correctAnswers: 0,
   }
 
+  restartQuiz = () => {
+    this.setState({
+      showQuestion: true,
+      questionIndex: 0,
+      correctAnswers: 0
+    })
+  }
+
   showAnswer = () => {
   	this.setState({
       showQuestion: false
@@ -113,6 +121,20 @@ export default class Quiz extends React.Component {
     )
   }
 
+  showCompletedMessage = () => {
+    return (
+      <View>
+        <Text style={{fontSize: 30}}>Your quiz is complete!</Text>
+
+        <TouchableOpacity
+          onPress={this.restartQuiz}
+          style={styles.button}>
+          <Text style={styles.submitText}>Restart Quiz</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
   render () {
     const { questionIndex } = this.state
     const { questions } = this.props.navigation.state.params
@@ -123,7 +145,7 @@ export default class Quiz extends React.Component {
         { this.showHeader() }
 
         { quizComplete
-          ? <Text style={{fontSize: 30}}>Your quiz is complete!</Text>
+          ? this.showCompletedMessage()
           : this.showCard()
         }
       </View>
