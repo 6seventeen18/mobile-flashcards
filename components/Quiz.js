@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import { styles } from '../utils/styles'
 import { Ionicons } from '@expo/vector-icons'
 import { lightGreen, lightRed } from '../utils/colors'
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers'
 
 export default class Quiz extends React.Component {
   state = {
@@ -11,6 +12,11 @@ export default class Quiz extends React.Component {
     questionIndex: 0,
     correctAnswers: 0,
   }
+
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification())
+	}
 
   restartQuiz = () => {
     this.setState({

@@ -12,6 +12,7 @@ import NewDeck from './components/NewDeck'
 import DeckHome from './components/DeckHome'
 import NewQuestion from './components/NewQuestion'
 import Quiz from './components/Quiz'
+import { setLocalNotification } from './utils/helpers'
 
 function StyledStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -107,6 +108,10 @@ const MainNavigator = createStackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     const store = createStore(reducer)
     return (
