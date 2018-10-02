@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { NavigationActions } from 'react-navigation'
+import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../utils/styles'
 import { Ionicons } from '@expo/vector-icons'
 import { lightGreen, lightRed } from '../utils/colors'

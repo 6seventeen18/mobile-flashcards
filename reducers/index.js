@@ -1,10 +1,6 @@
 import { RECEIVE_DECKS, ADD_DECK, ADD_QUESTION } from '../actions'
 
 function decks (state = {}, action) {
-  console.log("reducers/index.js state: ", state)
-  console.log("---------------------------------")
-  console.log("reducers/index.js action: ", action)
-  console.log("---------------------------------")
   switch (action.type) {
     case RECEIVE_DECKS :
       return {
@@ -18,6 +14,7 @@ function decks (state = {}, action) {
       }
     case ADD_QUESTION :
       const { deckId, title, questions, card} = action.params
+      // TODO: This line breaks for adding cards to a new deck
       const updatedQuestions = JSON.parse(JSON.stringify(questions)).concat([ card ])
 
       return {

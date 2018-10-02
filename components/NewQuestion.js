@@ -17,8 +17,6 @@ class NewQuestion extends React.Component {
     answer: '',
   }
 
-  // TODO disable submit until form is complete
-
   addQuestion = () => {
     const card = {
       question: this.state.question,
@@ -72,7 +70,6 @@ const style = StyleSheet.create({
       alignItems: 'center',
       paddingTop: 20,
       justifyContent: 'flex-start',
-      // backgroundColor: '#ed1044' /* red */
     },
     textInput: {
       width: 300,

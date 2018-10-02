@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, Animated, FlatList, Button } from 'react-native'
-import { purple, white, red } from '../utils/colors'
+import { View, Text, TouchableOpacity, FlatList, Button } from 'react-native'
 import { getDecksFromStorage } from '../utils/api'
 import { receiveDecks } from '../actions'
 import DeckCard from './DeckCard'

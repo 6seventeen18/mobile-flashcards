@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Constants } from 'expo'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import reducer from './reducers'
-import { red, white, purple, black, green, gray } from './utils/colors'
+import { red, green } from './utils/colors'
 import Home from './components/Home'
 import NewDeck from './components/NewDeck'
 import DeckHome from './components/DeckHome'
@@ -70,13 +70,6 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       header: null,
       title: 'New Deck',
-      // headerStyle: {
-      //   height: 30,
-      // },
-      // headerTitleStyle: {
-      //   fontSize: 28,
-      // },
-      // headerTintColor: '#000',
     }
   },
   DeckHome: {

@@ -22,10 +22,6 @@ class NewDeck extends Component {
     const deckKey = title.split(" ").join()
     const newDeck = {[deckKey]: {title: title, questions: []}}
 
-    // TODO: handle deck already exists
-
-    // TODO disable submit until form is complete
-
     createDeck(newDeck)
       .then(dispatch(addDeck(newDeck)))
       .then(decks => dispatch(receiveDecks(decks)))
@@ -63,7 +59,6 @@ const style = StyleSheet.create({
       alignItems: 'center',
       paddingTop: 20,
       justifyContent: 'flex-start',
-      // backgroundColor: '#ed1044' /* red */
     },
     textInput: {
       width: 300,
