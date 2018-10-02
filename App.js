@@ -111,7 +111,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           <StyledStatusBar
-            backgroundColor="red"
+            backgroundColor="gray"
             barStyle="light-content"
           />
           <MainNavigator />
