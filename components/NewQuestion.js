@@ -24,7 +24,7 @@ class NewQuestion extends React.Component {
     }
 
     const { title, questions } = this.props.navigation.state.params
-    const deckId = title.split(" ").join()
+    const deckId = title
     const { dispatch, navigation } = this.props
     const params = { deckId, title, questions, card }
 

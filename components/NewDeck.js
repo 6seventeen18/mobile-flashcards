@@ -19,7 +19,7 @@ class NewDeck extends Component {
   addDeck = () => {
     const { title } = this.state
     const { dispatch, navigation } = this.props
-    const deckKey = title.split(" ").join()
+    const deckKey = title
     const newDeck = {[deckKey]: {title: title, questions: []}}
 
     createDeck(newDeck)
