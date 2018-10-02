@@ -42,16 +42,8 @@ class Home extends Component {
             renderItem={this.renderDeck}
             keyExtractor={(item, index) => index.toString()}/>
         </View>
-
-        <Button title="clearAsyncStorage" onPress={this.clearAsyncStorage}>
-          <Text>Clear Async Storage</Text>
-        </Button>
       </View>
     )
-  }
-
-  clearAsyncStorage = async() => {
-    AsyncStorage.clear()
   }
 }
 
